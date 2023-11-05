@@ -1,0 +1,15 @@
+<table class="table table-hover" id="table">
+	<thead class= "table-dark">
+		<tr>
+			<th>Name</th>
+			<th>Total value</th>
+			<th>Target percentage</th>
+			<th>Current Percentage</th>
+		</tr>
+	</thead>
+	<tbody hx-target="closest tr" hx-swap="outerHTML">
+		{% for row in rows %}
+			{% include "partials/row.html" %}
+		{% endfor %}
+	</tbody>
+</table>
