@@ -1,18 +1,18 @@
 [[Categories]]
 name = "world"
-target_percentage=0.75
+target_percentage = 0.75
 
 [[Categories]]
 name = "bonds"
-target_percentage=0.25
+target_percentage = 0.25
 
 [[Securities]]
 name = "iShares Core MSCI World UCITS ETF USD (Acc)"
 symbol = "IWDA.AS"
 url = "https://trader.degiro.nl/trader/#/products/846772"
 amount = 859
-latest_value = 0.0
-latest_value_time = 0
+latest_value = 76.9749984741211
+latest_value_time = 1699029000
 target_percentage = 1.0
 category = "world"
 
@@ -21,8 +21,8 @@ name = "iShares BRIC 50 UCITS ETF USD (Dist)"
 symbol = "BRIC.AS"
 url = "https://trader.degiro.nl/trader/#/products/846748"
 amount = 171
-latest_value = 0.0
-latest_value_time = 0
+latest_value = 17.700000762939453
+latest_value_time = 1699028160
 target_percentage = 0.0
 category = "world"
 
@@ -31,8 +31,8 @@ name = "iShares Euro Inflation Linked Government Bond UCITS ETF"
 symbol = "IBCI.AS"
 url = "https://trader.degiro.nl/trader/#/products/846726"
 amount = 19
-latest_value = 0.0
-latest_value_time = 0
+latest_value = 219.80999755859375
+latest_value_time = 1699029000
 target_percentage = 1.0
 category = "bonds"
 
@@ -41,7 +41,7 @@ name = "iShares Govt Bond 3-5yr UCITS ETF EUR (Dist)"
 symbol = "IBGX.AS"
 url = "https://trader.degiro.nl/trader/#/products/846740"
 amount = 120
-latest_value = 0.0
-latest_value_time = 0
+latest_value = 158.60000610351563
+latest_value_time = 1699025340
 target_percentage = 0.0
 category = "bonds"
