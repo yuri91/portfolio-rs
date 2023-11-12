@@ -37,7 +37,7 @@ async fn main() -> Result<()> {
                 .on_response(trace::DefaultOnResponse::new().level(Level::INFO)),
         )
         .layer(tower_livereload::LiveReloadLayer::new());
-    let port = 8000_u16;
+    let port = 7309_u16;
     let addr = std::net::SocketAddr::from(([0, 0, 0, 0], port));
 
     info!("router initialized, now listening on port {}", port);
