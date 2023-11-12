@@ -36,8 +36,10 @@ async fn main() -> Result<()> {
             TraceLayer::new_for_http()
                 .make_span_with(trace::DefaultMakeSpan::new().level(Level::INFO))
                 .on_response(trace::DefaultOnResponse::new().level(Level::INFO)),
-        )
-        .layer(tower_livereload::LiveReloadLayer::new());
+        );
+    #[cfg(debug_assertions)]
+    let router = router.layer(tower_livereload::LiveReloadLayer::new());
+
     let port = 7309_u16;
     let addr = std::net::SocketAddr::from(([0, 0, 0, 0], port));
 
