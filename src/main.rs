@@ -26,10 +26,11 @@ async fn main() -> Result<()> {
 
     let profile_routes = Router::new()
         .route("/:profile", get(routes::redirect_add_slash))
-        .route("/:profile/", get(routes::index))
+        .route("/:profile/", get(routes::profile))
         .route("/:profile/solve", post(routes::solve))
         .route("/:profile/commit", post(routes::commit));
     let router = Router::new()
+        .route("/", get(routes::index)) 
         .nest("/profile", profile_routes)
         .layer(
             TraceLayer::new_for_http()

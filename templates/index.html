@@ -3,26 +3,13 @@
 {% block title %}Portfolio{% endblock %}
 
 {% block content %}
-<div id="current">
-{% include "partials/table.html" %}
-</div>
-<div id="solve">
-	<form>
-		<div class="row align-items-center">
-			<div class="col-auto form-floating">
-				<input id="amount" name="amount" class="form-control" type="number" placeholder="0" value="0"></input>
-				<label for="amount"><b>New amount</b></label>
-			</div>
-			<div class="col-auto">
-				<button class="btn btn-primary" hx-post="solve" hx-target="#orders" hx-select="#orders" hx-swap="outerHTML">Solve</button>
-			</div>
-		</div>
-	</form>
-</div>
-<div id="orders">
-</div>
-<div id="projected">
-</div>
-<div id="commit">
+<div id="profiles" class="my-3">
+	<ul class="list-group">
+	{% for p in profiles %}
+		<li class="list-group-item">
+			<a href="/profile/{{p}}/">{{p }}</a>
+		</li>
+	{% endfor %}
+	</ul>
 </div>
 {% endblock %}
