@@ -38,7 +38,7 @@ pub struct Portfolio {
 
 impl Portfolio {
     pub fn load(profile: &str) -> Result<Portfolio> {
-        let s = std::fs::read_to_string(&dbg!(format!("{profile}.toml")))?;
+        let s = std::fs::read_to_string(format!("{profile}.toml"))?;
         let p = toml::from_str(&s)?;
         Ok(p)
     }
