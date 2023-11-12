@@ -1,8 +1,8 @@
-use axum::response::IntoResponse;
 use axum::extract::Path;
-use axum::Form;
-use axum::response::Redirect;
 use axum::http::Uri;
+use axum::response::IntoResponse;
+use axum::response::Redirect;
+use axum::Form;
 
 use crate::data::*;
 use crate::solve;
@@ -26,13 +26,16 @@ pub async fn solve(Path(profile): Path<String>, Form(form): Form<SolveForm>) -> 
     let to_buy = solve::solve(&p, new_budget);
     p.update_amounts(&to_buy);
     let rows = populate_rows(&p);
-    let to_buy = to_buy.into_iter().zip(p.securities).filter(|&(a, _)| a > 0).collect();
+    let to_buy = to_buy
+        .into_iter()
+        .zip(p.securities)
+        .filter(|&(a, _)| a > 0)
+        .collect();
     Solve {
         rows,
         to_buy,
         new_budget,
     }
-
 }
 
 pub async fn commit(Path(profile): Path<String>, Form(form): Form<SolveForm>) -> impl IntoResponse {

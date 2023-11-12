@@ -1,6 +1,6 @@
-use yahoo_finance_api as yahoo;
-use std::collections::HashMap;
 use anyhow::Result;
+use std::collections::HashMap;
+use yahoo_finance_api as yahoo;
 
 pub struct Row {
     pub name: String,
@@ -80,11 +80,14 @@ pub fn populate_rows(p: &Portfolio) -> Vec<Row> {
     let mut rows = Vec::new();
     for c in &p.categories {
         let securities = groups.get(&c.name).unwrap();
-        let value = securities.iter().map(|s| s.amount as f64 * s.latest_value).sum();
+        let value = securities
+            .iter()
+            .map(|s| s.amount as f64 * s.latest_value)
+            .sum();
         rows.push(Row {
             name: c.name.clone(),
             value,
-            target_percentage: 100.* c.target_percentage,
+            target_percentage: 100. * c.target_percentage,
             current_percentage: 100. * value / tot_value,
             is_category: true,
             out_of_date: false,
@@ -94,7 +97,7 @@ pub fn populate_rows(p: &Portfolio) -> Vec<Row> {
             rows.push(Row {
                 name: s.name.clone(),
                 value,
-                target_percentage: 100.* s.target_percentage*c.target_percentage,
+                target_percentage: 100. * s.target_percentage * c.target_percentage,
                 current_percentage: 100. * value / tot_value,
                 is_category: false,
                 out_of_date: false,
@@ -111,4 +114,3 @@ pub fn populate_rows(p: &Portfolio) -> Vec<Row> {
     });
     rows
 }
-

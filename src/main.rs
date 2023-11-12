@@ -1,4 +1,5 @@
 use anyhow::Context;
+use anyhow::Result;
 use axum::{
     routing::{get, post},
     Router,
@@ -6,12 +7,10 @@ use axum::{
 use tower_http::trace::{self, TraceLayer};
 use tracing::{info, Level};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use anyhow::Result;
 
-mod solve;
-mod routes;
 mod data;
-
+mod routes;
+mod solve;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -50,5 +49,3 @@ async fn main() -> Result<()> {
 
     Ok(())
 }
-
-
