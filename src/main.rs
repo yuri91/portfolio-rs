@@ -12,6 +12,7 @@ mod solve;
 mod routes;
 mod data;
 
+
 #[tokio::main]
 async fn main() -> Result<()> {
     tracing_subscriber::registry()
@@ -24,9 +25,13 @@ async fn main() -> Result<()> {
 
     info!("initializing router...");
 
+    let profile_routes = Router::new()
+        .route("/:profile", get(routes::redirect_add_slash))
+        .route("/:profile/", get(routes::index))
+        .route("/:profile/solve", post(routes::solve))
+        .route("/:profile/commit", post(routes::commit));
     let router = Router::new()
-        .route("/", get(routes::index))
-        .route("/solve", post(routes::solve))
+        .nest("/profile", profile_routes)
         .layer(
             TraceLayer::new_for_http()
                 .make_span_with(trace::DefaultMakeSpan::new().level(Level::INFO))
