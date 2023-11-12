@@ -25,7 +25,7 @@ fn solve_impl(mut current: Array, new_budget: f64, mut shares: Array) -> Array {
             .zip(alloc.clone())
             .for_each(zero_where_neg);
         let shares_sum = shares.sum();
-        shares = shares / shares_sum;
+        shares /= shares_sum;
     }
 }
 

@@ -44,7 +44,7 @@ impl Portfolio {
     }
     pub fn save(&self, profile: &str) -> Result<()> {
         let s = toml::to_string(self)?;
-        std::fs::write(&format!("{profile}.toml"), &s)?;
+        std::fs::write(format!("{profile}.toml"), s)?;
         Ok(())
     }
     pub async fn update_quotes(&mut self) -> bool {
