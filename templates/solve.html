@@ -12,5 +12,5 @@
 {% include "partials/table.html" %}
 </div>
 <div id="commit" hx-swap-oob="true">
-	<button class="btn btn-primary" hx-post="/commit" hx-target="#content" hx-select="#content" hx-swap="outerHTML" value="{{ new_budget }}" name="amount">Commit</button>
+	<button class="btn btn-primary" hx-post="commit" hx-target="#content" hx-select="#content" hx-swap="outerHTML" value="{{ new_budget }}" name="amount">Commit</button>
 </div>
