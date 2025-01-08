@@ -4,6 +4,7 @@ use axum::{
     routing::{get, post},
     Router,
 };
+use tokio::net::TcpListener;
 use tower_http::trace::{self, TraceLayer};
 use tracing::{info, Level};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
@@ -30,7 +31,7 @@ async fn main() -> Result<()> {
         .route("/:profile/solve", post(routes::solve))
         .route("/:profile/commit", post(routes::commit));
     let router = Router::new()
-        .route("/", get(routes::index)) 
+        .route("/", get(routes::index))
         .nest("/profile", profile_routes)
         .layer(
             TraceLayer::new_for_http()
@@ -45,10 +46,12 @@ async fn main() -> Result<()> {
 
     info!("router initialized, now listening on port {}", port);
 
-    axum::Server::bind(&addr)
-        .serve(router.into_make_service())
+    let listener = TcpListener::bind(&addr)
         .await
-        .context("error while starting server")?;
+        .context("cannot start listener")?;
+    axum::serve(listener, router)
+        .await
+        .context("cannot start server")?;
 
     Ok(())
 }
