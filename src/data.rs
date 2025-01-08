@@ -51,7 +51,11 @@ impl Portfolio {
         let mut updated = false;
         for s in &mut self.securities {
             let provider = yahoo::YahooConnector::new();
-            if let Ok(resp) = provider.get_quote_range(&s.symbol, "1m", "1d").await {
+            if let Ok(resp) = provider
+                .unwrap()
+                .get_quote_range(&s.symbol, "1m", "1d")
+                .await
+            {
                 if let Ok(last) = resp.last_quote() {
                     updated = true;
                     s.latest_value = last.close;
